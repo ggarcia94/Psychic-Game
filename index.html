@@ -3,9 +3,6 @@
   <head>
     <meta charset="UTF-8">
     <title>The Psychic Game</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-
   </head>
   <body>
   <body>
@@ -16,72 +13,7 @@
         <p>Guess what letter I'm thinking of</p>
       </div>
 
-    <!-- We have to put this at the end of our document to ensure the user-text
-         span exists when we try to access it. -->
-    
-    <script type="text/javascript">
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 
-        function randLetter() {
-            var letters =
-                ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
-                ,"r","s","t","u","v","w","x","y","z"];
-            var letter = letters[Math.floor(Math.random()*letters.length)];
-        return letter
-        }
-
-        var computerLetter = randLetter();
-        var wins = 0;
-        var losses = 0;
-        var numberOfGuesses = 9;
-        var guesses = [];
-
-        function display() {
-          console.log("Wins:", wins);
-          console.log("Losses:", losses);
-          console.log("Number of Guesses:", numberOfGuesses);
-          console.log("Guesses:", guesses);
-          console.log(computerLetter);
-          console.log(guessedLetter);
-        } 
-
-
-      // Next, we give JavaScript a function to execute when onkeyup event fires.
-      document.onkeyup = function(event) {
-        guessedLetter = event.key;
-        
-        if (guessedLetter !== computerLetter) {
-            guesses.push(guessedLetter);
-            numberOfGuesses--;
-            display();
-        }
-
-        if (numberOfGuesses === 0) {
-            losses++;
-            guesses = [];
-            numberOfGuesses = 9;
-            computerLetter = randLetter();
-            display();
-        } 
-        
-        if (guessedLetter === computerLetter) {
-            wins++;
-            guesses = [];
-            numberOfGuesses = 9;
-            computerLetter = randLetter();
-            display();
-        } 
-
-       var html =
-          "<p>Guess what letter Im thinking of</p>" +
-          "<p>Wins: " + wins + "</p>" +
-          "<p>Losses: " + losses + "</p>" +
-          "<p>Guesses Left: " + numberOfGuesses + "</p>" +
-          "<p>Your Guesses: " + guesses + "</p>";
-
-        // Set the inner HTML contents of the #game div to our html string
-        document.querySelector("#game").innerHTML = html; 
-
-      };
-    </script>
   </body>
 </html>
